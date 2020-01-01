@@ -1,0 +1,217 @@
+<!doctype html>
+<html>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:700&display=swap" rel="stylesheet">
+    <meta charset="utf-8">
+    <title>COMP 20 - FINAL PROJECT</title>
+    <style type="text/css">
+      body, html {
+        background-color: #454545;
+        color: #FFF;
+        font-family: 'Roboto', sans-serif;
+        cursor: default;
+        padding: 0px;
+        margin: 0px;
+      }
+      .navBar {
+        position: fixed;
+        top: 0px;
+        background-color: #595959;
+        width: 100%;
+        margin: 0px;
+        padding: 10px;
+        text-align: center;
+      }
+      .container {
+        position: absolute;
+        left: 50%;
+        margin-left: -500px;
+        top: 150px;
+        width: 1000px;
+        text-align: center;
+      }
+      a {
+        color: #FFF;
+        text-decoration: none;
+        font-size: 45px;
+      }
+      h2 {
+        font-size: 40px;
+      }
+      h3 {
+        font-size: 30px;
+      }
+      h4 {
+        font-size: 23px;
+      }
+      h5 {
+        font-size: 17px;
+      }
+      .playAgainButton {
+        font-size: 12pt;
+        padding: 12px 24px;
+        visibility: hidden;
+        position: relative;
+        background-color: #ad42ff;
+        border: solid 1px #ad42ff;
+        color: #f7f7f7;
+        border-radius: 15px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        margin: 10px 0px;
+        cursor: pointer;
+      }
+      .playAgainButton:hover {
+        background: #9000ff;
+        border: solid 1px #9000ff;
+        border-radius: 15px;
+        color: #ebebeb;
+        outline: none;
+      }
+      .playAgainButton:focus {
+        outline: 0;
+      }
+      .scoreContainer {
+        position: absolute;
+        left: 60px;
+        width: 250px;
+        top: -50px;
+      }
+      .wordsContainer {
+        position: absolute;
+        left: 40px;
+        top: 70px;
+        text-align: center;
+      }
+      .defContainer {
+        position: absolute;
+        margin-left: 50%;
+        margin-right: 5%;
+        top: -50px;
+        text-align: left;
+      }
+      .defWord {
+        text-align: left;
+      }
+      .defText {
+        margin-top: -30px;
+        text-align: left;
+      }
+      .wordsTable {
+        position: absolute;
+        width: 300px;
+        left: 50%;
+        margin-left: -150px;
+      }
+      .wordsRow {
+        text-align: center;
+      }
+      .word {
+        color: #FFF;
+        cursor: pointer;
+      }
+      .word:hover {
+        color: #ad42ff;
+      }
+      .score {
+        margin-top: -15px;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navBar"><a href="index.html">Onym Words</a></nav>
+    <div class="container" id="container">
+      <center>
+      <div class="scoreContainer" id="scoreContainer">
+        <h1>Final score:</h1>
+        <h2 class="score" id="score"></h2>
+      </div>
+      </center>
+      <div class="wordsContainer" id="wordsContainer">
+        <h3>Click for definitions:</h3>
+        <table class="wordsTable" id="wordsTable">
+          <tr class="wordsRow" id="wordsRow0">
+            <td class="word" id="word0_0"></td>
+            <td class="word" id="word0_1"></td>
+          </tr>
+          <tr class="wordsRow" id="wordsRow1">
+            <td class="word" id="word1_0"></td>
+            <td class="word" id="word1_1"></td>
+          </tr>
+          <tr class="wordsRow" id="wordsRow2">
+            <td class="word" id="word2_0"></td>
+            <td class="word" id="word2_1"></td>
+          </tr>
+        </table>
+      </div>
+      <div class="defContainer" id="defContainer">
+        <h2 class="defWord" id="defWord"></h2>
+        <p class="defText" id="defText">
+        </p>
+      </div>
+    </div>
+    </center>
+
+    <script language="javascript" type="text/javascript">
+
+      var finalScore = localStorage.getItem("finalScore");
+
+      var usedWordsString = localStorage.getItem("usedWords");
+      console.log(usedWordsString);
+      var usedWords = usedWordsString.split(",");
+      var numWords = usedWords.length;
+      var numRows = numWords / 2;
+
+      var table = document.getElementById("wordsTable");
+      var defWordDisplay = document.getElementById("defWord");
+      var defTextDisplay = document.getElementById("defText");
+      var scoreDisplay = document.getElementById("score");
+
+      var defText;
+
+      for (i = 0; i < numRows; i++) {
+        var currRow = document.getElementById("wordsRow" + i);
+        if (currRow) {
+          for (j = 0; j < 2; j++) {
+            var currWord = document.getElementById("word" + i + "_" + j)
+            currWord.innerHTML = usedWords[0];
+            usedWords.shift();
+          }
+        } else {
+          var newRow = table.insertRow(i);
+          newRow.className = "wordsRow";
+          var newWord1 = newRow.insertCell(0);
+          var newWord2 = newRow.insertCell(1);
+          newWord1.className = newWord2.className = "word";
+          newWord1.innerHTML = usedWords[0];
+          newWord2.innerHTML = usedWords[1];
+          usedWords.splice(0, 2);
+        }
+      }
+
+      $(".word").click(function() {
+        var word = this.textContent;
+        defWordDisplay.innerHTML = word;
+        defTextDisplay.innerHTML = "";
+        $.ajax({
+          type: "GET",
+          url: "https://www.dictionaryapi.com/api/v3/references/collegiate/json/" + word + "?key=058036c9-eb04-4c41-b4b8-72de22609d84",
+          dataType: 'json',
+          success: function(data) {
+            for (i = 0; i < data.length; i++) {
+              var currDef = data[i].shortdef + "<br><br>";
+              defTextDisplay.innerHTML += (i + 1) + " " + currDef;
+            }
+          },
+          async: false
+        });
+      })
+
+      scoreDisplay.innerHTML = finalScore;
+
+
+    </script>
+  </body>
+</html>

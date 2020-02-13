@@ -1,7 +1,6 @@
 var finalScore = localStorage.getItem("finalScore");
 
 var usedWordsString = localStorage.getItem("usedWords");
-console.log(usedWordsString);
 var usedWords = usedWordsString.split(",");
 var numWords = usedWords.length;
 var numRows = numWords / 2;

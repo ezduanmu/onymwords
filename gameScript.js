@@ -5,7 +5,8 @@ var words = ["POLITE","BEAUTIFUL", "GORGEOUS", "HAPPY", "SAD", "UGLY",
             "EXCITED", "PATHETIC", "HONORABLE", "INCORRECT", "MANY",
             "WORSE", "SUPERIOR", "ELEGANT", "SIMPLE", "LOUD", "QUIET", "PROPER",
             "SECURE", "HORRIBLE", "DISGUSTING", "SMOOTH", "HEALTHY", "RESPONSIBLE",
-          "ACTIVE", "PASSIVE", "TERRIBLE", "STIFF", "FAT", "SKINNY", "BORING"];
+          "ACTIVE", "PASSIVE", "TERRIBLE", "STIFF", "FAT", "SKINNY", "BORING",
+            "PATHETIC", "PROUD", "WEIRD", "NORMAL"];
 var usedWords = [];
 var word1 = document.getElementById("word1");
 var word2 = document.getElementById("word2");

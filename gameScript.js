@@ -178,7 +178,6 @@ function setWords() {
 setWords();
 
 function answer(ans) {
-  console.log(usedWords);
   ansId = ans;
   var done = false;
   $("#"+correctAnswer.toLowerCase()).addClass("correctButton");

@@ -5,8 +5,7 @@ var words = ["POLITE","BEAUTIFUL", "GORGEOUS", "HAPPY", "SAD", "UGLY",
             "EXCITED", "PATHETIC", "HONORABLE", "INCORRECT", "MANY",
             "WORSE", "SUPERIOR", "ELEGANT", "SIMPLE", "LOUD", "QUIET", "PROPER",
             "SECURE", "HORRIBLE", "DISGUSTING", "SMOOTH", "HEALTHY", "RESPONSIBLE",
-          "ACTIVE", "PASSIVE", "TERRIBLE", "STIFF", "FAT", "SKINNY", "BORING",
-            "PATHETIC", "PROUD", "WEIRD", "NORMAL"];
+          "ACTIVE", "PASSIVE", "TERRIBLE", "STIFF", "FAT", "SKINNY", "BORING"];
 var usedWords = [];
 var word1 = document.getElementById("word1");
 var word2 = document.getElementById("word2");
@@ -178,6 +177,7 @@ function setWords() {
 setWords();
 
 function answer(ans) {
+  console.log(usedWords);
   ansId = ans;
   var done = false;
   $("#"+correctAnswer.toLowerCase()).addClass("correctButton");

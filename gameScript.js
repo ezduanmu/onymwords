@@ -5,8 +5,11 @@ var words = ["POLITE","BEAUTIFUL", "GORGEOUS", "HAPPY", "SAD", "UGLY",
             "EXCITED", "PATHETIC", "HONORABLE", "INCORRECT", "MANY",
             "WORSE", "SUPERIOR", "ELEGANT", "SIMPLE", "LOUD", "QUIET", "PROPER",
             "SECURE", "HORRIBLE", "DISGUSTING", "SMOOTH", "HEALTHY", "RESPONSIBLE",
-          "ACTIVE", "PASSIVE", "TERRIBLE", "STIFF", "FAT", "SKINNY", "BORING"];
+            "ACTIVE", "PASSIVE", "TERRIBLE", "STIFF", "SKINNY", "BORING", 
+            "REGULAR", "NORMAL", "GREGARIOUS", "FRIENDLY", "MALICIOUS", "SINCERE",
+            "HONORABLE", "COLORFUL", "BLAND", "DARK", "IGNORANT", "AWARE"];
 var usedWords = [];
+var words = document.getElementById("words");
 var word1 = document.getElementById("word1");
 var word2 = document.getElementById("word2");
 var ansId;
@@ -24,7 +27,7 @@ var correctAnswer = "NEITHER";
 var intervalTimer;
 
 function setWords() {
-    document.getElementById("feedback").innerHTML = "";
+    feedbackDisplay.innerHTML = "";
     do {
       $.ajax({
         type: "GET",
@@ -41,6 +44,8 @@ function setWords() {
       choosew2(w1choose, pick);
     } while (usedWords.includes(w2choose));
     usedWords.push(w1choose, w2choose);
+    document.getElementById("and").innerHTML = "and";
+    document.getElementById("are").innerHTML = "are";
     word1.innerHTML = w1choose;
     word2.innerHTML = w2choose;
     timing();

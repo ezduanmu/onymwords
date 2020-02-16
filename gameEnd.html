@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <title>COMP 20 - FINAL PROJECT</title>
     <style type="text/css">
-      .container {
+      .leftColumn {
         position: absolute;
         left: 50%;
         margin-left: -500px;
@@ -15,30 +15,8 @@
         width: 1000px;
         text-align: center;
       }
-      .playAgainButton {
-        font-size: 12pt;
-        padding: 12px 24px;
-        visibility: hidden;
-        position: relative;
-        background-color: #ad42ff;
-        border: solid 1px #ad42ff;
-        color: #f7f7f7;
-        border-radius: 15px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        margin: 10px 0px;
-        cursor: pointer;
-      }
-      .playAgainButton:hover {
-        background: #9000ff;
-        border: solid 1px #9000ff;
-        border-radius: 15px;
-        color: #ebebeb;
-        outline: none;
-      }
-      .playAgainButton:focus {
-        outline: 0;
+      .score {
+        margin-top: -15px;
       }
       .scoreContainer {
         position: absolute;
@@ -48,9 +26,52 @@
       }
       .wordsContainer {
         position: absolute;
-        left: 40px;
-        top: 70px;
+        left: 50px;
+        top: 100px;
         text-align: center;
+      }
+      #tableHeader {
+        
+      }
+      .wordsTable {
+        width: 100%;
+      }
+      .wordsRow {
+        text-align: center;
+      }
+      .wordLeft {
+        text-align: left;
+        color: #FFF;
+        cursor: pointer;
+      }
+      .wordRight {
+        text-align: right;
+        color: #FFF;
+        cursor: pointer;
+      }
+      .wordLeft:hover, .wordRight:hover {
+        color: #ad42ff;
+      }
+      .playButton {
+        background-color: #ad42ff;
+        border: solid 1px #ad42ff;
+        color: #f7f7f7;
+        border-radius: 15px;
+        padding: 12px 24px;
+        text-align: center;
+        text-decoration: none;
+        width: 120px;
+        margin-top: 50px;
+        top: 500px;
+        font-size: 12pt;
+      }
+      .playButton_hover:hover {
+        background: #9000ff;
+        border: solid 1px #9000ff;
+        border-radius: 15px;
+        color: #ebebeb;
+        outline: none;
+        cursor: pointer;
       }
       .defContainer {
         position: absolute;
@@ -66,52 +87,32 @@
         margin-top: -30px;
         text-align: left;
       }
-      .wordsTable {
-        position: absolute;
-        width: 300px;
-        left: 50%;
-        margin-left: -150px;
-      }
-      .wordsRow {
-        text-align: center;
-      }
-      .word {
-        color: #FFF;
-        cursor: pointer;
-      }
-      .word:hover {
-        color: #ad42ff;
-      }
-      .score {
-        margin-top: -15px;
-      }
     </style>
   </head>
   <body>
     <nav class="navBar"><a href="index.html">Onym Words</a></nav>
-    <div class="container" id="container">
-      <center>
+    <div class="leftColumn" id="leftColumn">
       <div class="scoreContainer" id="scoreContainer">
         <h1>Final score:</h1>
         <h2 class="score" id="score"></h2>
       </div>
-      </center>
       <div class="wordsContainer" id="wordsContainer">
-        <h3>Click for definitions:</h3>
         <table class="wordsTable" id="wordsTable">
+          <h3 id="tableHeader">Click for definitions:</h3>
           <tr class="wordsRow" id="wordsRow0">
-            <td class="word" id="word0_0"></td>
-            <td class="word" id="word0_1"></td>
+            <td class="word wordLeft" id="word0_0"></td>
+            <td class="word wordRight" id="word0_1"></td>
           </tr>
           <tr class="wordsRow" id="wordsRow1">
-            <td class="word" id="word1_0"></td>
-            <td class="word" id="word1_1"></td>
+            <td class="word wordLeft" id="word1_0"></td>
+            <td class="word wordRight" id="word1_1"></td>
           </tr>
           <tr class="wordsRow" id="wordsRow2">
-            <td class="word" id="word2_0"></td>
-            <td class="word" id="word2_1"></td>
+            <td class="word wordLeft" id="word2_0"></td>    
+            <td class="word wordRight" id="word2_1"></td>
           </tr>
         </table>
+        <input class="playButton playButton_hover" type="button" value="Play Again" id="playAgainButton" onclick="window.location.href = 'game.html';">
       </div>
       <div class="defContainer" id="defContainer">
         <h2 class="defWord" id="defWord"></h2>

@@ -26,7 +26,10 @@ for (i = 0; i < numRows; i++) {
     newRow.className = "wordsRow";
     var newWord1 = newRow.insertCell(0);
     var newWord2 = newRow.insertCell(1);
-    newWord1.className = newWord2.className = "word";
+    newWord1.className = "wordLeft";
+    newWord1.classList.add("word");
+    newWord2.className = "wordRight";
+    newWord2.classList.add("word");
     newWord1.innerHTML = usedWords[0];
     newWord2.innerHTML = usedWords[1];
     usedWords.splice(0, 2);
